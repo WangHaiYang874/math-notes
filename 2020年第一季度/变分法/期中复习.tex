@@ -1,0 +1,54 @@
+\documentclass[]{article}
+
+%带@字符的命令
+
+%使用的包   \usepackage[options]{pakages}
+    \usepackage[UTF8, heading = true]{ctex}
+    \usepackage[]{amsmath,amsthm}
+    \usepackage{amsfonts}
+    \usepackage[margin = 1in]{geometry}
+
+    \usepackage{hyperref}
+
+
+
+    \newtheorem{thm}{定理}
+    \newtheorem{lem}{引理}
+
+%自定义命令 \newcommand{cmd}[args][default]{definition}
+    \newcommand{\R}{\mathbb{R}}
+
+%文件信息
+    \title{2020春季NYU变分法笔记, Bulher教授}
+    \author{王海阳}
+    \date{\today}
+
+\begin{document}
+
+%文章开头
+    \maketitle
+
+%摘要
+    \begin{abstract}
+        此笔记记录了Oliver Bulher教授于2020年春季在纽约大学
+        所授Honors IV课程的主要内容. 写此为方便记忆, 复习, 回顾.
+
+        所用的教科书为 Gelfand 与 Fomin 所写的
+        Calculus of Variations, 2000 Dover.
+        当然, 还引用了一些其它的资料.
+
+        致谢: 无
+    \end{abstract}
+
+%目录
+    \tableofcontents
+
+
+\include{part1}
+
+\include{part2}
+
+\include{part3}
+
+
+\end{document}

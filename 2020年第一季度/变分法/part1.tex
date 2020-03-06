@@ -1,0 +1,122 @@
+\section{基本知识}
+
+\subsection{介绍}
+
+例子：最短路径，最短时间，等周不等式,都可以写成形式：
+\[J[y] = \int_a^b F(x,y,y')dx\]
+
+这类函子都有局部化的性质：可以拆成多段的小积分，局部求极值。
+
+要继续下去，需要给出函数空间上恰当的距离，上述函子中的\(y\)
+是恰当地属于\(C^1\)的。所以我们可以考虑距离：
+\(|y| =\max|y| + \max|y'|\)。
+并且假定我们所要找的解就在这个空间中。
+
+除此之外，函子也得需要有连续性，即\(J:C^1([a,b])\to \R\)是个连续函数。
+我们也需要线性函子的概念，见教科书第八页。
+
+\begin{lem}
+    若 \(\alpha(x)\) 连续，
+    且\(\int_a^b\alpha(x)h(x)dx=0,\forall h\in C^1, h(a)=h(b)=0\).
+
+    那么\(\alpha  \equiv 0\).
+\end{lem}
+
+\begin{lem}基本引理
+
+\begin{itemize}
+\item 若 \(\alpha(x)\) 连续，
+    且\(\int_a^b\alpha(x)h'(x)dx=0,\forall h\in C^1, h(a)=h(b)=0\).
+
+    那么\(\alpha  \equiv C\), 一个常数
+
+\item 若 \(\alpha(x)\) 连续，
+    且\(\int_a^b\alpha(x)h''(x)dx=0,\forall h\in C^1, h(a)=h(b)=0\).
+
+    那么\(\alpha  \equiv Cx + D\), 俩个常数
+
+\item 若\(\alpha,\beta\)为连续函数，
+    且\(\int_a^b \alpha(x)h(x)+\beta(x)h'(x)dx = 0\).
+
+    那么\(\beta\)可微，且\(\beta' = \alpha\).
+
+\end{itemize}
+\end{lem}
+
+
+现在开始考虑变分. 对于定义在有距离的线性函数空间上的\(J[y]\)
+令
+\[\Delta J[h] = J[y+h]-J[y].\]
+若有线性函子\(\phi\)和在零点处无穷小阶函子\(\epsilon\)使得
+\(\Delta J[h] = \phi[h] + \epsilon|h|\),那么称\(\phi\)为
+\(J\)的变分,记作\(\partial J\).
+容易得知,变分若存在必唯一.
+
+\begin{thm}
+    \(J[y]\)在\(\hat y\)处取极值的必要条件是
+    \[\partial J[h] = 0, \forall h\].
+\end{thm}
+
+从物理的角度来说,我们定义\(p = F_{y'}, H = -F + y'p\), 其意义分别为动量和能量(Hamiltonian算子)
+
+\subsection{欧拉-拉格朗日方程}
+
+在固定端点的变分问题里,令\(F\)连续可微,
+若\(y\)是满足上一定理条件的极值曲线.
+很容易有:
+\[F_y - \frac{d}{dx}F_{y'} = 0\]
+但这样做是相当于假定了极值曲线是平滑的.稍后会介绍处理不平滑曲线的方法
+
+\begin{thm} Bernstein 微分方程解的存在性定理.见16页
+
+    若函数\(F,F_y,F_{y'}\)都在有限区域内连续,
+    且存在\(k>0\)和\(\alpha(x,y),\beta(x,y) \ge 0\)
+    满足\(F_y > k, |F| \le \alpha y'^2 + \beta\)
+
+    那么微分方程\(y'' = F(x,y,y')\)在给定不同端点的条件下有唯一解
+\end{thm}
+
+
+\begin{thm} E-L方程的特殊情况汇总
+
+    \begin{itemize}
+        \item 若\(F\)不直接取决于\(y\), 那么E-L公式推出:
+        \(F_{y'} = C\).
+        \item 若\(F\)不直接取决于\(x\), 那么E-L公式推出:
+        \(F - y'F_{y'} = C\).
+        \item 若\(F\)不直接取决于\(y'\), 那么E-L公式推出:
+        \(F \equiv C\).
+    \end{itemize}
+
+\end{thm}
+
+\subsection{多变量情况, 这节不用看}.
+
+\begin{lem}基本引理
+    若\(\alpha(x,y)\)在区域\(R\)上连续且满足:
+    \[\int\int_R \alpha(x,y)h(x,y)dxdy \equiv 0, \forall h\]
+    \(h\)在\(R\)上连续且\(h\)在\(R\)的边界\(\Gamma\)上为0. 那么
+    \(\alpha = 0\).
+\end{lem}
+
+\(z = z(x,y)\).那么对于函子
+\[J[z] = \int\int_R F(x,y,z,z_x,z_y)dxdy\].
+
+有
+\[\partial J = \int\int_R(F_z - \frac{\partial}{\partial x}F_{z_x} - \frac{\partial}{\partial y}F_{z_y} )h(x,y)dxdy\].
+中间必须为零的那项是一个二阶PDE, 被称为欧拉等式. 可以用来解决:给定边界,求最小面积曲面.
+
+\subsection{参数化}
+
+把原有的方程改为
+\[\int_{t_0}^{t_1} F(x(t),y(t),\frac{\dot y(t)}{\dot x(t)}) \dot x(t) dt = \int \Phi(x,y,\dot x,\dot y)dt\]
+保留原方程性质的充要条件：\(\dot x, \dot y\)有一阶positive homogeneous,
+也就是说\(\Phi(x,y,\lambda\dot x,\lambda\dot y) = \lambda \Phi(x,y,\dot x, \dot y)\).
+
+值得注意的是(废话的),参数的选取不是本质的.
+
+\subsection{高阶欧拉-拉格朗日方程}
+
+取函子\(\int F(x,y_1,y_2,\dots,y_n,\dot y_1,\dots,\dot y_n)dx\).
+
+其E-L方程为: \(F_{y} - \frac{d}{dx}F_{y'} + \frac{d^2}{dx^2}F_{y''} - \dots + (-1)^n \frac{d^n}{dx^n} F_{y^{(n)}}\)

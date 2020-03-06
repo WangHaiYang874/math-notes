@@ -1,0 +1,102 @@
+\section{更进一步的条件与等式}
+
+\subsection{不受限制的变分之表达}
+
+为了解决端点可以移动的变分法问题, 首先需要给函数空间一个新的距离:
+
+\[\rho(y,y^*) = \max|y - y^*| + \max|y' - y^*| + \rho (P_0,P_0^*) + \rho(P_1,P_1^*)\]
+
+其中\( P_0 = (x_0,y(x_0) = y_0),  P_1 = (x_1, y(x_1) = y_1), P_0^* = (x_0 + \partial x_0, y_0 + \partial y_0), P_1 = (x_1 + \partial x_1, y_1 + \partial y_1)\).
+
+令\(h(x) = y^*(x) - y(x)\). 可以求得公式:
+\[\partial J = \int_{x_0}^{x_1} (F_y - \frac{d}{dx}F_{y'})h(x) dx + F_{y'}\partial y|^{x = x_1}_{x = x_0} + (F- F_{y'}y')\partial x|_{x = x_0}^{x = x_1} \]
+也可以简写为\(\partial J = \int_{x_0}^{x_1} (F_y - \frac{d}{dx}F_{y'})h(x) dx + p\partial y|^{x = x_1}_{x = x_0} - H\partial x|_{x = x_0}^{x = x_1}\)
+
+
+\subsection{自然边界条件和横向条件}
+
+在上一小节中, 若曲线\(y\)为极值曲线,也就是说\(\partial J = 0\).
+那么可以任意的选取\(h\). 特别地,我们选取不移动端点的\(h\),
+如此便可知得到E-L等式是极值曲线的必要条件.
+那么我们就可以略去公式中的积分项, 得到自然边界条件:
+
+\[(p\partial y - H\partial x)|_{x = x_0}^{x = x_1} = 0.\]
+
+例子: 函数空间的每个函数的端点都落在俩个给定曲线(\(y = \phi(x), y = \psi(x)\))上.
+
+此时,自然边界条件变成了:
+\[ F + (\phi' - y')p |_{x = x_0} = 0, F + (\psi' - y')p |_{x = x_1} = 0\]
+
+上述条件被称为是横向条件(transversality).
+注意到, 这两个等式是我们固定自然边界条件中的
+\(P_0*,P_1*\)中的一个, 再把两个端点处的
+\(\partial x, \partial y\)用\(\phi',\psi'\)联系起来所得到的.
+
+
+\subsection{不光滑解:W-E条件}
+
+在固定端点的求函子极值的问题中,
+如果我们把"解一定光滑的假设"变成"解一定逐段光滑",
+那么就可以获得弱极值曲线的必要条件(broken extremal).
+
+简单的概括, 在不光滑点处, \(p, H\), 动量与能量, 是需要连续的.
+这被称为\emph{Weierstrass-Erdmann corner condition}.
+
+假设我们所需求的解只在一个点不光滑, 那我们该如何解它呢?
+\begin{itemize}
+    \item 找俩个端点处满足E-L方程的两组起始于不同端点的俩组曲线\(\{f_1\},\{f_2\} \).
+    \item 取两组曲线的交点
+    \item 用W-E条件筛选出合格的交点
+    \item 验证最小性.
+\end{itemize}
+
+
+
+\subsection{拉格朗日乘数法与限制条件}
+
+\subsubsection{第一种限制条件:函子的等高线上}
+
+例子: 等周不等式的解决. 等周不等式的极值可以写做在特定限制下(长度固定)时,
+来极值化函子的解. 所以一般的,可以表达为如下形式.
+\[J[y] = \int F(x,y,y')dx\]
+在条件\(y(a) = A, y(b) = B, K[y] = \int G(x,y,y')dx = l\)下的极值.
+
+\begin{thm}
+
+    若\(y\)是上述条件下的一个极值, 且\(y\)不是函子\(K\)的极值.
+    那么存在常数\(\lambda\)使得\(y\)是函子\(\int_a^b F+\lambda G dx\)的极值.
+
+    也就是说, 满足以下微分方程:
+    \[F_{y} - \frac{d}{dx}F_{y'} + \lambda(G_y - \frac{d}{dx}G_{y'}) = 0\]
+
+\end{thm}
+
+更一般的来说, 对于函子\(J[y_1,\dots ,y_n]\)和限制条件\(K_i[y] = l_i, i = 1,\dots,k\).
+有微分方程系统:
+\[\frac{\partial}{\partial y_i}(F + \sum_1^k \lambda_iG_i ) - \frac{d}{dx} (\frac{\partial}{\partial y'_i} F+\sum_1^k \lambda_iG_i) = 0\]
+
+\subsubsection{第二种限制条件:函数(又称有限限制条件)}.
+
+边界条件为:
+\(y_i(a) = A_i, y_i(b) = B, i = 1,\dots,n\) 和
+\(g_j(x,y_1,\dots,y_n) = 0, j = 1,\dots,k < n\).
+被归类为有限限制条件,可以看出,限制条件相当于是给出了一个\(n - k\)维的流形.
+而我们也被限制在这个流形上考虑极值问题.
+
+先从简单的\(n = 2, k = 1\)的情况开始.
+\begin{thm}
+
+    给定\(J[y,z] = \int_a^b F(x,y,z.y',z')dx\),
+    且\((x,y,z)\)在曲面\(g(x,y,z) = 0\)上,
+    且\(g_y, g_z\)不同时在曲面上消失.
+    且极值曲线\(y(x),z(x)\)存在.
+
+    那么存在函数\(\lambda (x)\)使得\(y(x),z(x)\)是
+    \(\int_a^b F+ \lambda (x)g dx\)的极值曲线.
+    也就是满足微分方程:
+    \[F_y + \lambda g_y - \frac{d}{dx}F_{y'} = 0\]
+    \[F_z + \lambda g_z - \frac{d}{dx}F_{z'} = 0\]
+
+\end{thm}
+
+这类条件说是有限,实际却是无限.

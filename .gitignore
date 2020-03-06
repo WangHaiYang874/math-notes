@@ -11,11 +11,11 @@
 *.cb
 *.cb2
 .*.lb
-*.tex
+# *.tex
 
 
 # Image file
-*.png
+# *.png
 
 ## Intermediate documents:
 *.dvi
