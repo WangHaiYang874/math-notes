@@ -4,26 +4,240 @@
 
     典型, 也就是把做变量代换\((x,y,y') \to (x,y,p = F_{y'})\)是个
     非常有用的工具, 它可以把我们的EL条件化成形式较好的一阶微分方程,
-    更有其妙用无穷.
+    更有其妙用无穷. 同时, 我们还有转换\(F \to H\). 
+    \[H = -F + y'p\]
 
     上述变量代换允许进行的条件为:
     \(\det\frac{\partial(p_1,\dots,p_n)}{\partial(y_1,\dots,y_n)} \ne 0\),
     或者更美好的条件是上述矩阵正定. 这样就有了原来的凸性. 
 
+    而转换后的EL方程有如下形式:
+    \begin{equation}
+        \begin{aligned}
+            dH &= - \frac{\partial F}{\partial x}dx - \sum \frac{\partial F}{\partial y_i}dy_i +\sum y_i' dp_i \\
+            \frac{\partial H}{\partial x} &= -\frac{\partial F}{\partial x}, \\
+            \frac{\partial H}{\partial y_i} &= -\frac{\partial F}{\partial y_i}, \\
+            \frac{\partial H}{\partial p_i} &= y_i' \\
+            \frac{dy_i}{dx} &= \frac{\partial H}{\partial p_i}, 
+            \frac{dp_i}{dx} = \frac{\partial H}{\partial y_i}. 
+        \end{aligned}
+    \end{equation}
+    只有最后一行是EL等式,前几行只是推导过程. 
 
-\subsection{E-L的典型形式}
-% TODO
+
 \subsection{E-L的第一积分}
-% TODO
+
+若\(F\)不直接与\(x\)相关, 那么有上一个式子, 我们知道 \(H\) 也和\(x\) 不直接相关.
+\[
+\frac{dH}{dx} 
+    = \sum  \frac{\partial H}{\partial y_i}\frac{dy_i}{dx} 
+        +   \frac{\partial H}{\partial y_i}\frac{dp_i}{dx} 
+    = \sum  \frac{\partial H}{\partial y_i}\frac{\partial H}{\partial p_i}
+        -   \frac{\partial H}{\partial p_i}\frac{\partial H}{\partial y_i}
+    = 0
+\]
+所以\(H\)在每个满足EL方程的\(y\)上是常数, 如果我们假设所有物理系统里的运动都要服从
+EL方程, 那么我们可以把\(H\)称作物理系统的第一积分, 也可以称作EL等式的第一积分. 
+
+对于任意一个第一积分\(\Phi(y_1,\cdots,y_n, p_1,\cdots,p_n)\), 我们可以探索它的充要条件: 
+\begin{equation}
+    \frac{d\Phi}{dx} 
+    = \sum  \frac{\partial \Phi}{\partial y_i}\frac{dy_i}{dx}
+        +   \frac{\partial \Phi}{\partial p_i}\frac{p_i}{dx} 
+    = \sum  \frac{\partial \Phi}{\partial y_i}\frac{\partial H}{\partial p+i}
+        -   \frac{\partial \Phi}{\partial p_i}\frac{\partial H}{\partial y_i}
+    = [\Phi,H]
+\end{equation}
+最后这个括号叫泊松括号, 由此我们可知第一积分的充要条件是\([\Phi,H]\)在轨迹上处处为零. 
+
 \subsection{Legendre变换,典型变化}
-% TODO
+
+由勒让德变换, 我们可以由另一种方式来获取EL方程的典型式. ...有点懒得介绍啊. 总而言之,
+这是个involution,也就是变换俩次等于不变换. 
+
+例子. \(f(\epsilon) = \frac{\epsilon^a}{a}, a>1\) 
+可以被involution为\(H(p) = \frac{p^b}{b}, \frac{1}{a}+\frac{1}{b} = 1\). 
+
+\begin{thm}基本定理
+    对于下凸函数\(f(\epsilon_1, \cdots, \epsilon_n)\)和其勒让德变换\(H(p_1,\cdots,p_n)\), 有:
+    \begin{itemize}
+        \item $f(\epsilon) = \max_p[- H(p) + \epsilon p]$
+        \item \(H(p) = \max_{\epsilon} -f(\epsilon) + \epsilon p\)
+        \item (Young's 不等式)\(f(\epsilon) + H(p) \ge \epsilon p\)
+        \item \(\alpha f(\epsilon) \to \alpha H(p/\alpha)\). 
+        \item \(f(\alpha) \to H(p/\alpha)\)
+        \item 叠加是个什么状态我忘了. 
+        \item \(f(\epsilon - a) = H(p) + pa\)
+    \end{itemize}
+\end{thm}
+
+有了勒让德变换的基本性质后, 我们能开始构造EL公式的典型了.
+选取新的函子:
+\[J[y] = \int_a^b -H(x,y,p) + py' dx.\]
+就可以得到EL函数的典范型: 
+\[\frac{\partial H}{\partial y} = - \frac{dp}{dx}, \quad \frac{\partial H}{\partial p} = \frac{dy}{dx}\]
+
+
+\subsection{典型变换}
+
+普通EL方程的不变算子有着形式: 
+\[u = u(x,y), v = v(x,y), u_xv_y - u_yv_x \ne 0\]. 
+那么典型变换(不改变EL典型方程的算子)有哪些呢? 
+
+若\(Y_i = Y_i(x,y_1,\cdots, y_n,p_1,\cdots, p_n), P_i = P_i(x,y,p)\). 
+那么有新的函子: 
+\[J^*[Y_1,\cdots, Y_n, P_1,\cdots,P_n] = \int \sum P_iY_i' - H^* dx. \]
+\begin{lem}
+    若两个函子有相同的极值曲线, 那他俩间差一个全导数. 
+\end{lem}
+由此, 知道了充要条件: \(\sum p_idy_i - H dx = \sum P_idY_i - H^*dx + d\Phi(x,y,p)\). 
+翻译以下, 就是: 
+\[p_i = \frac{\partial \Phi}{\partial y_i},\quad P_i = \frac{{\partial \Phi}}{\partial Y_i},\quad H^* = H + \frac{\partial \Phi}{\partial x}\]
+这个语境下, \(\Phi\)被称为生成函数. 生成函数还可以写成: \(\Psi = \Phi + \sum P_iY_i\).
+这样就有了对偶
+\[p_i = \frac{\partial \Psi}{\partial y_i},\quad Y_i = \frac{\partial \Psi}{\partial P_i},\quad H^* = H + \frac{\partial \Psi}{\partial x}\]
+
 \subsection{Noether定理}
-% TODO
+
+典型变换是一个空间里的对称, 而诺特定理完美的描述了这类对称能给我们带来什么样的结果: 各类守恒定理. 
+最简单的情况就是在\(F\)与\(x\)无关时的第一积分\(H\). 而更一般的情况如下. 
+
+考虑变换\(y(x)\to y^*(x^*)\): 
+\[x^* = \Phi(x,y_1,\cdots,y_n,y'_1,\cdots,y'_n) = \Phi(x,y,y'),\quad y_i^* = \Psi_i(x,y_1,\cdots,y_n,y'_1,\cdots,y'_n) = \Psi_i(x,y,y')\]
+我们称这个函子\(J[y]\)在上述变换下不变当且仅当
+\[\int_{x_0^*}^{x_1^*}F(x^*,y^*,\frac{y^*}{x^*}) dx = \int_{x_0}^{x_1} F(x,y,\frac{dy}{dx})dx.\]
+ 若我们有一组由实数index的连续不变变换\(\Phi^\epsilon, \Psi^\epsilon\),
+ 且\(\Phi^0(x,y,y') = x, \Psi_i^0(x,y,y') = y_i\), 就有:  
+\begin{thm}(Noether)
+    \[\sum F_[y_i']\psi_i + (F - \sum y_i'F_{y_i'})\phi = \text{const}\]
+    这里的\(\psi = \frac{\partial \Psi}{\partial\epsilon}, \quad \phi = \frac{\partial |Phi}{\partial\epsilon}\)
+\end{thm}
+
+这个定理的特殊情况就是我们之前说的\(H\)在不直接取决与\(x\)时, \(H\)是个第一积分. 
+
 \subsection{最小动作原理}
-% TODO
-\subsection{受恒量}
-% TODO
+
+把一个有\(n\)个粒子的物理系统的动能定义为:
+\(T = \frac{1}{2} \sum m_i(\dot x_i^2 + \dot y_i^2 + \dot z_i^2)\).
+
+再假设我们有动能:
+\(U = U(t,x_1,y_1,z_1,\cdots,x_n,y_n,z_n)\). 
+那么各个例子在各个方向上的力可以被定义为:
+\(X_i = -\frac{\partial U}{\partial x_i}, Y_i = \frac{\partial U}{\partial y_i}, \cdots\). 
+
+如此, 我们就可以引入拉格朗日算子(动作): 
+\[L = T - U.\]
+
+在一个固定的时刻\(t_0\), 系统是固定的状态. 
+而此后系统以\(x_i(t),y_i(t),z_i(t)\)的方式演变, 那么有:
+\begin{thm}principal of least action
+
+    \((x(t),y(t),z(t))\)是函子\(J[x,y,z] = \int_{t_0}^{t_1} L dt\)的极值曲线. 
+\end{thm}
+最小运动原理的有限制条件(在一个曲面上运动)时一样成立, 而且常常只能局部成立. 
+
+
+\subsection{守恒量}
+
+接上一小节,我们有典型变量: \(p_{ix} = \frac{\partial L}{\partial \dot x_i} = m_i\dot x_i\)和对\(y,z\)相同的等式. 
+由此有:
+\[H = -L + \sum p_{ix}\dot x_i = U - T + \sum m_i\dot x_i^2 = U + T. \]
+得到了以下: 
+\begin{thm}守恒定理
+
+    \begin{itemize}
+        \item 能量守恒: 
+            
+            如果给定系统守恒, 也就是说拉格朗日函数和时间无关, 那么能量守恒
+
+        \item 动量守恒
+
+            如果action函子在变换: \((x,y,z)\to (x+\epsilon,y,z)\)下保持不变,
+            那么\(x-\)动量: \(P_x = \sum p_{ix}\)守恒. 同理可以获得对\(P_y, P_z\)的类似公式. 
+            所有的动量都守恒被称为动量守恒.
+            这里的变换可以看成平移变换
+        \item 角动量守恒
+
+            如果action函子在变换: 
+            \((x_i,y_i,z_i)\to (x_i\cos(\epsilon) + y_i\sin(\epsilon), -x_i\sin(\epsilon) + y_i\cos(\epsilon), z_I)\)
+            下保持不变. 那么绕\(z\)轴的角动量:\(\sum p_{ix}y_i - p_{iy}x_i \)守恒.
+            更一般的, 所有角动量守恒可以写作: \(\sum p_i \times r_i\)守恒. 
+            这里的变换可以看成旋转变换. 
+            
+    \end{itemize}
+\end{thm}
+
+
 \subsection{汉密尔顿-雅克布方程}
-% TODO
+
+对在一个曲面\(S\)所有经过\(A,B\)两点的曲线\(y(x) = (y_1,\cdots,y_n)\), 和一个给定的
+函子\(J[y] = \int_{x_0}^{x_1} F(x,y,y') dx\). 若有极值曲线\(y^*\), 那么\(S = J[y^*]\)
+被称为测地线距离, \(y^*\)被称为测地线. 显而易见的\(S = S(A,B)\). 
+
+例子. 费马原则指出, 光速沿着时间最短的路程前进, 那么\(F = \frac{\sqrt{\dot x^2 + \dot y^2 + \dot z^2}}{v}\). 
+
+给定Lagrangian L, 两点间的测地线, 可以得出: \(dS = \partial J\). 
+由此又可以得出: 
+\[dS = \partial J = \sum p_idy_i -Hdx\]
+\[\frac{\partial S}{\partial x} + H(x,y_1,\cdots,y_n, \frac{\partial S}{\partial y_1}, \cdots, \frac{\partial S}{\partial y_n}) = 0. \]
+这就是哈密顿-雅克布方程, 它是一个PDE. EL典型方程是上述方程的特征系统(? 这是什么鬼??)
+
+\begin{thm}
+    
+    给定上述方程的一组解(取决于参数\(\alpha\)) \(S = S(x,y_1,\cdots,y_n,\alpha_1,\cdots,\alpha_m), m\le n\), 
+    那么每个微分\(\frac{\partial S}{\partial \alpha_i}\)都是欧拉典型方程的第一积分. 
+\end{thm}
+
+\begin{thm}
+    给出上述方程的完整积分(一般解)\(S\), 并假设矩阵\(|\frac{\partial^2 S}{\partial \alpha_i \partial y_k}|\)
+    的行列式不为零.
+    取任意的常数\(\beta_i, i = 1,\cdots,n\). 
+    
+    那么由关系:
+    \[\frac{\partial }{\partial \alpha_i}S(x,y,\alpha) = \beta_i\]
+    所决定的函数\(y_i\). 
+    与函数\(p_i = \frac{\partial}{\partial y_i}S\).
+
+    给出了典型方程
+    \[\frac{dy_i}{dx} = \frac{\partial H}{\partial p_i}, \frac{dp_i}{dx} = - \frac{\partial H}{\partial y_i}\]
+    的一般解. 
+\end{thm}
+
+不知道上面这玩意该怎么解释啊?把问题转化成了一个几何问题?还是说什么啊?
 \subsection{费马原则}
-% TODO
+
+在一个对时间对称的物理系统里, 我们有比最小动作原理更特殊且更美妙的原则: 费马原则. 
+它提供了将一个选取从点\(A\)到点\(B\)真正路径(不依赖于时间)的问题, 变成在黎曼曲面上
+找测地线的问题. 
+
+给定一个时间对称的\(L(q,\dot q)\)和相对应的\(H\), 考虑在极值曲线上的变分, 满足: 
+\begin{itemize}
+    \item 从极值曲线\(q^*\)到极值曲线\(q^* + \delta q\)
+    \item \(H\)在俩个极值曲线上都是常数. 
+    \item 第二条路径会和第一条路径同时离开\(A\)点, 但可能会在不同的时间\(t_B + \delta t_B\)到达\(B\).
+    \item 函子是 \(S\)
+\end{itemize}
+这类变分被称为同能变分. 
+
+有\(\delta S^* = -H_B\delta t_B = -E\delta t_B\). 
+
+现在可以把重写\(S\)为
+\[S[q] = \int_{t_A}^{t_B}(\sum p_i \dot q_i - H) dt = S_0[q] - \int_{t_A}^{t_B}Hdt.\]
+\(S_0[q] = \int_{t_A}^{t_B}(\sum p_i \dot q_i) dt\) 被称为是截断动作. \(p_i= \frac{\partial L}{\partial \dot q_i}\). 
+
+上面俩点加起来, 可以获得截断动作\(\partial S_0\)在现实路径上的同能变分为零. 这就是最基础的费马原理. 
+
+要想应用费马原理, 我们要在截断动作中实现时间对称. 有时或许可以利用\(E\)的值来消灭掉时间, 有时又不行. 
+
+例子, 当有类似这样的式子时:
+\[H = \frac{1}{2}\frac{\sum_{ik}\alpha_{ik}(q)dq_idq_k}{dt^2} + V(q) = E\]
+可以翻译成: 
+\[\sqrt{\sum_{ik}\alpha_{ik}(q) dq_i dq_k} = \sqrt{2(E-V(q))}dt. \]
+就可以使得我们的式子写成不涉及时间的形式: 
+\[S_0[q] = \int \sqrt{2(E-V(q))} \sqrt{\sum_{ik}a_{ik}(q)dq_idq_k}.\]
+
+相当于有黎曼测度: 
+\[ds^2 = 2(E-V(q))\sum_{ik}a_{ik}(q)dq_idq_k\]
+一个内积的形式. 
+
+这个应该是和哈密顿雅可比等式有着一定的关联, 但是上节课我没听懂, 因为上上节课我没听. 
