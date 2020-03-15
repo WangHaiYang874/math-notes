@@ -1,17 +1,12 @@
 % 前言
 \documentclass{article}
 \usepackage[UTF8, heading=true]{ctex}
-% \usepackage[utf8]{inputenc}
 \usepackage[margin = 1in]{geometry}
-% \usepackage[english]{babel}
-\usepackage{fancyhdr}
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{amsfonts}
-% \usepackage{natbib}
-% \usepackage{graphicx}
-\usepackage{hyperref}
 
+\usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
 \lhead{}
@@ -20,28 +15,61 @@
 \rfoot{}
 \cfoot{\thepage}
 
-\newtheorem{prob}{问题}[section]
-\newtheorem{lem}{引理}[section]
-\renewcommand{\headrulewidth}{1pt}
-\renewcommand{\footrulewidth}{1pt}
+
+% \usepackage{natbib}
+\usepackage{graphicx}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+}
+
+% \usepackage{unicode-math}
+% \setmathfont{XITS Math}
+% \setmathfont[version=setB,StylisticSet=1]{XITS Math}
+
+\newtheorem{problem}{Problem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{exercise}{练习}[section]
+\newtheorem{defi}{定义}[section]
+
+\newcommand{\Real}{\mathbb R}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Complex}{\mathbb C}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\st}{\operatorname{s.t. }}
+\newcommand{\obj}{\operatorname{obj}}
+\newcommand{\cate}{\mathscr C}
+\newcommand{\mor}{\operatorname{Mor}}
 
 % \includeonly{}
 
 \begin{document}
 
-\title{Atiyah 交换代数习题解答}
-\author{王海阳}
+\title{Rising sea notes and solutions}
+\author{王海阳Haiyang Wang}
 \date{\today}
 \maketitle
 
+\begin{abstract}
+    读Rising sea时的笔记, 和作业题的记录. 文件中的section为书中的chapter.  
+    
+    合作: ??? 暂无
+
+    参考:
+    rising sea
+
+\end{abstract}
+
 \tableofcontents
 
-
-\include{chapter1}
-
-\include{chapter2}
-
-
+\include{chap1}
 
 % \bibliographystyle{plain}
 % \bibliography{references}
